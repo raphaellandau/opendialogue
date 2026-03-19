@@ -44,3 +44,11 @@ return $product_name;
 }
 add_filter( 'woocommerce_cart_item_name', 'ns_woocommerce_checkout_remove_item', 10, 3 );
 
+/* Custom terms and conditions checkbox text */
+
+add_filter( 'woocommerce_get_terms_and_conditions_checkbox_text', function( $text ) {
+    $terms_page_id = wc_get_page_id( 'terms' );
+    $terms_url     = $terms_page_id ? get_permalink( $terms_page_id ) : '#';
+    return 'קראתי את <a href="' . esc_url( $terms_url ) . '">תקנון האתר ומדיניות הפרטיות</a>';
+} );
+
